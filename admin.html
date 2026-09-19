@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Panel Admin - VulnShop</title>
+<style>
+  body { font-family: Arial, sans-serif; background:#f4f4f4; margin:0; }
+  header { background:#900; color:#fff; padding:15px 30px; }
+  .container { max-width:600px; margin:30px auto; background:#fff; padding:20px; border-radius:6px; }
+</style>
+</head>
+<body>
+<header><h1>Panel de Administración</h1></header>
+<div class="container" id="content">Verificando acceso...</div>
+
+<script>
+  // Vulnerabilidad: la "autenticación" se controla solo por un parámetro en la URL
+  // ?logged=true otorga acceso sin validar nada en servidor (porque no hay servidor real)
+  const params = new URLSearchParams(window.location.search);
+  const logged = params.get('logged');
+
+  const content = document.getElementById('content');
+  if (logged === 'true') {
+    content.innerHTML = "<h2>Bienvenido, admin</h2><p>Acceso concedido. Flag: FLAG{bypass_auth_param_facil}</p>";
+  } else {
+    content.innerHTML = "<p>Acceso denegado. Inicia sesión primero.</p><a href='login.html'>Ir a login</a>";
+  }
+</script>
+</body>
+</html>

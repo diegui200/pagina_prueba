@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Login - VulnShop</title>
+<style>
+  body { font-family: Arial, sans-serif; background:#f4f4f4; display:flex; justify-content:center; margin-top:80px; }
+  .box { background:#fff; padding:30px; border-radius:6px; width:300px; }
+  input { width:100%; padding:8px; margin:6px 0; box-sizing:border-box; }
+  button { width:100%; padding:10px; background:#222; color:#fff; border:none; border-radius:4px; cursor:pointer; }
+  .msg { margin-top:10px; color:red; font-size:14px; }
+</style>
+</head>
+<body>
+<div class="box">
+  <h2>Iniciar sesión</h2>
+  <input type="text" id="user" placeholder="Usuario">
+  <input type="password" id="pass" placeholder="Contraseña">
+  <button onclick="login()">Entrar</button>
+  <div class="msg" id="msg"></div>
+</div>
+
+<script>
+  // Validación hecha en el cliente (mala práctica intencional para practicar)
+  // Credenciales "secretas" visibles en el código fuente / JS
+  const USUARIO_VALIDO = "admin";
+  const PASS_VALIDO = "S3cr3t0!";
+
+  function login() {
+    const u = document.getElementById('user').value;
+    const p = document.getElementById('pass').value;
+    if (u === USUARIO_VALIDO && p === PASS_VALIDO) {
+      window.location.href = "admin.html?logged=true";
+    } else {
+      document.getElementById('msg').innerText = "Usuario o contraseña incorrectos";
+    }
+  }
+</script>
+</body>
+</html>
